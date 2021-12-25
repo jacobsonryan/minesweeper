@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background-color: #2b2b2b;
+}
+
+.board {
+	display: grid;
+	grid-template-columns: repeat(16, 0fr);
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 50px;
+}
+
+.board div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border: 1px solid black;
+	cursor: pointer;
+	user-select: none;
+}
+
+img {
+	height: 36px;
+	width: 36px;
+	cursor: pointer;
+}

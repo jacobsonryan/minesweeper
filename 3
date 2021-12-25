@@ -1,0 +1,61 @@
+import './App.css';
+import React, { useState, useEffect } from 'react'
+
+function App() {
+
+	const [board, setBoard] = useState([])
+ 
+	function initBoard() {
+		let tempBoard = board
+
+		tempBoard = Array.from(Array(9), () => new Array(9))
+		for(let i = 0; i < tempBoard.length; i++) {
+			for(let j = 0; j < tempBoard[i].length; j++) {
+				tempBoard[i][j] = {count: 0, visible: true}
+			}
+		}
+
+		for(let i = 0; i < 10; i++) {
+			let randomX = Math.floor(Math.random() * tempBoard.length)
+			let randomY = Math.floor(Math.random() * tempBoard.length)
+			tempBoard[randomX][randomY].count = -1 
+		}
+
+		for(let i = 0; i < tempBoard.length; i++) {
+			for(let j = 0; j < tempBoard[i].length; j++) {
+				let counter = 0
+				for(let xOffset = -1; xOffset <= 1; xOffset++) {
+					for(let yOffset = -1; yOffset <= 1; yOffset++) {
+						if(tempBoard[i + xOffset]?.[j + yOffset].count === -1 && tempBoard[i][j].count !== -1) {
+							counter++
+							tempBoard[i][j].count = counter 
+						}
+					}
+				}
+				counter = 0
+			}
+		}
+		return tempBoard
+	}
+
+	useEffect(() => {
+		setBoard(initBoard())
+		console.log(board)
+	}, [])
+
+	return (
+		<>
+		<div className="board">
+		{board.map((row) => {
+			return(row.map((cell, index) => {
+				return(
+					<div key={index} style={{backgroundColor: cell.count === -1 ? 'red' : '' || cell.count === 0 ? 'grey' : ''}}>{cell.count === 0 ? '' : cell.count}</div>
+				)
+			})
+			)})}
+		</div>
+		</>
+  );
+}
+
+export default App;
