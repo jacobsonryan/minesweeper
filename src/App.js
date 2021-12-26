@@ -17,7 +17,7 @@ function App() {
 			}
 		}
 
-		for(let i = 0; i < 10; i++) {
+		for(let i = 0; i < 40; i++) {
 			let randomX = Math.floor(Math.random() * tempBoard.length)
 			let randomY = Math.floor(Math.random() * tempBoard.length)
 			tempBoard[randomX][randomY].count = -1
@@ -140,7 +140,7 @@ function App() {
 		{board.map((row, rIndex) => {
 			return(row.map((cell, cIndex) => {
 				return(
-					<img id="cell" key={cIndex} onClick={(() => {
+					<div id="cell" key={cIndex} onClick={(() => {
 						if(!gameOver) {
 							setStatus(0)
 							show(rIndex, cIndex)
@@ -152,12 +152,12 @@ function App() {
 							}
 						}
 					}
-					src={
-						cell.flagged ? require('./flag.jpg') : '' ||
-						!cell.visible ? require('./empty.jpg') : '' ||
-						require('./' + cell.src)
-					} 
-					/> 
+					style={{content: 
+						cell.flagged ? 'url(' + require('./flag.jpg') + ')' : '' ||
+						!cell.visible ? 'url(' +  require('./empty.jpg') + ')' : '' ||
+						'url(' + require('./' + cell.src) + ')'
+					}} 
+					></div> 
 				)
 			})
 			)})}
