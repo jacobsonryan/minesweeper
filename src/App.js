@@ -13,7 +13,7 @@ function App() {
 
 		for(let i = 0; i < tempBoard.length; i++) {
 			for(let j = 0; j < tempBoard[i].length; j++) {
-				tempBoard[i][j] = {count: 0, visible: false, flagged: false, src: '0.jpg'}
+				tempBoard[i][j] = {count: 0, visible: false, flagged: false}
 			}
 		}
 
@@ -21,7 +21,6 @@ function App() {
 			let randomX = Math.floor(Math.random() * tempBoard.length)
 			let randomY = Math.floor(Math.random() * tempBoard.length)
 			tempBoard[randomX][randomY].count = -1
-			tempBoard[randomX][randomY].src = 'bomb.jpg'
 			bombCounter++
 		}
 
@@ -34,7 +33,6 @@ function App() {
 							if(tempBoard[i + xOffset]?.[j + yOffset].count === -1 && tempBoard[i][j].count !== -1) {
 								counter++
 								tempBoard[i][j].count = counter
-								tempBoard[i][j].src = counter + '.jpg'
 							}
 						}
 					}
@@ -77,19 +75,19 @@ function App() {
 
 	function checkLose(rIndex, cIndex) {
 		let tempBoard = [...board]
+			tempBoard[rIndex][cIndex].bomb = true
 		if(tempBoard[rIndex][cIndex].count === -1 && !tempBoard[rIndex][cIndex].flagged) {
 			setGameOver(true)
 			setStatus(1)
 			for(let i = 0; i < tempBoard.length; i++) {
 				for(let j = 0; j < tempBoard[i].length; j++) {
 					if(tempBoard[i][j].count === -1 && !tempBoard[i][j].visible) {
-						tempBoard[i][j].src = 'shownBomb.jpg'
 						tempBoard[i][j].visible = true
 					}
 					if(tempBoard[i][j].count !== -1 && tempBoard[i][j].flagged) {
 						tempBoard[i][j].flagged = false
 						tempBoard[i][j].visible = true
-						tempBoard[i][j].src = 'wrongBomb.jpg'
+						tempBoard[i][j].wrong = true
 					}
 				}
 			}
@@ -114,6 +112,7 @@ function App() {
 		if(256 - bombs.length === checker.length) {
 			for(let i = 0; i < bombs.length; i++) {
 				if(!board[bombs[i].x][bombs[i].y].flagged) {
+
 					tempBoard[bombs[i].x][bombs[i].y].flagged = true
 					setBoard(tempBoard)
 				}
@@ -140,7 +139,7 @@ function App() {
 		{board.map((row, rIndex) => {
 			return(row.map((cell, cIndex) => {
 				return(
-					<div id="cell" key={cIndex} onClick={(() => {
+					<div id="cell" className={cell.visible ? "mines" + cell.count : '' || cell.flagged ? "flagged" : ''} key={cIndex} onClick={(() => {
 						if(!gameOver) {
 							setStatus(0)
 							show(rIndex, cIndex)
@@ -152,12 +151,17 @@ function App() {
 							}
 						}
 					}
-					style={{content: 
-						cell.flagged ? 'url(' + require('./flag.jpg') + ')' : '' ||
-						!cell.visible ? 'url(' +  require('./empty.jpg') + ')' : '' ||
-						'url(' + require('./' + cell.src) + ')'
-					}} 
-					></div> 
+					style={{
+						border: cell.visible ? '1px solid #757575' : '3px outset #cccccc', 
+						backgroundColor: cell.visible ? '#b5b5b5' : '#b5b5b5', 
+					}}
+
+					>{cell.visible && cell.count !== -1 && !cell.wrong ? cell.count : '' || 
+							cell.bomb && cell.visible ? <i className="bomb"></i> : '' ||
+							cell.visible && cell.count === -1 && !cell.flagged ? <i className="shownBomb" ></i> : '' ||
+							cell.count === -1 && cell.flagged ? <i className="flagged" style={{border: '3px outset #cccccc', backgroundColor: '#b5b5b5', boxSizing: 'border-box'}}></i> : '' ||
+							cell.wrong ? <i className="missed"></i> : ''}
+					</div> 
 				)
 			})
 			)})}
