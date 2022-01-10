@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@font-face {
+	font-family: minesweeper;
+	src: url(mine-sweeper.ttf)
+}
+
+/* {
+	font-family: minesweeper;
+	font-size: 22px;
+} */
+
 body {
   text-align: center;
   display: flex;
@@ -36,8 +46,18 @@ img {
 	cursor: pointer;
 }
 
-.active {
-	content: url('./0.jpg')
+#notclicked:active {
+	border: 1px solid #757575;
+}
+
+#clicked {
+	border: 1px solid #757575;
+	background-color: #b5b5b5;
+}
+
+#notclicked {
+	border: 3px outset #cccccc;
+	background-color: #b5b5b5;
 }
 
 .flagged {
@@ -66,8 +86,11 @@ img {
 	width: 36px;
 	content: url('./shownBomb.png');
 	background-color: red;
+	border: 1px solid #757575;
+	box-sizing: border-box;
 }
-	.mines-1, i {
+
+.mines-1, i {
 	color: red;
 }
 

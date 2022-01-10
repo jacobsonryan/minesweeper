@@ -75,7 +75,9 @@ function App() {
 
 	function checkLose(rIndex, cIndex) {
 		let tempBoard = [...board]
+		if(!tempBoard[rIndex][cIndex].flagged) {
 			tempBoard[rIndex][cIndex].bomb = true
+		}	
 		if(tempBoard[rIndex][cIndex].count === -1 && !tempBoard[rIndex][cIndex].flagged) {
 			setGameOver(true)
 			setStatus(1)
@@ -139,7 +141,7 @@ function App() {
 		{board.map((row, rIndex) => {
 			return(row.map((cell, cIndex) => {
 				return(
-					<div id="cell" className={cell.visible ? "mines" + cell.count : '' || cell.flagged ? "flagged" : ''} key={cIndex} onClick={(() => {
+					<div id={cell.visible ? "clicked" : "notclicked"} className={cell.visible ? "mines" + cell.count : '' || cell.flagged ? "flagged" : ''} key={cIndex} onClick={(() => {
 						if(!gameOver) {
 							setStatus(0)
 							show(rIndex, cIndex)
@@ -151,13 +153,8 @@ function App() {
 							}
 						}
 					}
-					style={{
-						border: cell.visible ? '1px solid #757575' : '3px outset #cccccc', 
-						backgroundColor: cell.visible ? '#b5b5b5' : '#b5b5b5', 
-					}}
-
 					>{cell.visible && cell.count !== -1 && !cell.wrong ? cell.count : '' || 
-							cell.bomb && cell.visible ? <i className="bomb"></i> : '' ||
+							cell.bomb && cell.visible && !cell.flagged ? <i className="bomb"></i> : '' ||
 							cell.visible && cell.count === -1 && !cell.flagged ? <i className="shownBomb" ></i> : '' ||
 							cell.count === -1 && cell.flagged ? <i className="flagged" style={{border: '3px outset #cccccc', backgroundColor: '#b5b5b5', boxSizing: 'border-box'}}></i> : '' ||
 							cell.wrong ? <i className="missed"></i> : ''}
