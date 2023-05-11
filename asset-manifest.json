@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.35ba9828.css",
-    "main.js": "/react-gh-pages/static/js/main.2937ce51.js",
-    "static/js/787.59acc832.chunk.js": "/react-gh-pages/static/js/787.59acc832.chunk.js",
-    "static/media/flag.png": "/react-gh-pages/static/media/flag.43fffb52ff6f80750785.png",
-    "static/media/missed.png": "/react-gh-pages/static/media/missed.0b47458373970f661750.png",
-    "static/media/shownBomb.png": "/react-gh-pages/static/media/shownBomb.eb9d45b052d01aaa12bd.png",
-    "static/media/mine-sweeper.ttf": "/react-gh-pages/static/media/mine-sweeper.0e2f95687141c4483cf6.ttf",
-    "index.html": "/react-gh-pages/index.html",
-    "main.35ba9828.css.map": "/react-gh-pages/static/css/main.35ba9828.css.map",
-    "main.2937ce51.js.map": "/react-gh-pages/static/js/main.2937ce51.js.map",
-    "787.59acc832.chunk.js.map": "/react-gh-pages/static/js/787.59acc832.chunk.js.map"
+    "main.css": "/minesweeper/static/css/main.da64adca.css",
+    "main.js": "/minesweeper/static/js/main.4c980ee0.js",
+    "static/js/787.59acc832.chunk.js": "/minesweeper/static/js/787.59acc832.chunk.js",
+    "static/media/flag.png": "/minesweeper/static/media/flag.43fffb52ff6f80750785.png",
+    "static/media/missed.png": "/minesweeper/static/media/missed.0b47458373970f661750.png",
+    "static/media/shownBomb.png": "/minesweeper/static/media/shownBomb.eb9d45b052d01aaa12bd.png",
+    "static/media/mine-sweeper.ttf": "/minesweeper/static/media/mine-sweeper.0e2f95687141c4483cf6.ttf",
+    "index.html": "/minesweeper/index.html",
+    "main.da64adca.css.map": "/minesweeper/static/css/main.da64adca.css.map",
+    "main.4c980ee0.js.map": "/minesweeper/static/js/main.4c980ee0.js.map",
+    "787.59acc832.chunk.js.map": "/minesweeper/static/js/787.59acc832.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.35ba9828.css",
-    "static/js/main.2937ce51.js"
+    "static/css/main.da64adca.css",
+    "static/js/main.4c980ee0.js"
   ]
 }
